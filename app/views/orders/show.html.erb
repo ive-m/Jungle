@@ -8,6 +8,16 @@
     <h4>Thank you for your order!</h4>
   </div>
 
+  <div class="order-details">
+    <h3>Order Details:</h3>
+    <h5>Email: <%= @order.email %></h5>
+    <h5>Final Amount: <%= humanized_money_with_symbol @order.total %></h5>
+
+    <% @order.line_items.each do |line_item| %>
+      <%= render partial: 'line_item', locals: { line_item: line_item } %>
+    <% end %>
+  </div>
+
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
 </section>
