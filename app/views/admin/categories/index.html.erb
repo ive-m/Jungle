@@ -1,0 +1,31 @@
+<!-- app/views/admin/categories/index.html.erb -->
+<section class="admin-categories-index">
+  <header class="page-header">
+    <h1>Admin &raquo; All Categories</h1>
+  </header>
+
+  <div class="well">
+    <%= link_to '+ New Category', new_admin_category_path, class: 'btn btn-info' %>
+  </div>
+
+  <div class="panel panel-default categories">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @categories.each do |category| %>
+          <tr>
+            <td><%= category.name %></td>
+            <td>
+              <%= link_to fa_icon('trash'), admin_categories_path(category), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>
