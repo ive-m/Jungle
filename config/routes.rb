@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   get 'about/index'
   root to: 'products#index'
 
@@ -7,8 +6,8 @@ Rails.application.routes.draw do
   resources :categories, only: [:show]
 
   resource :cart, only: [:show] do
-    post   :add_item
-    post   :remove_item
+    post :add_item
+    post :remove_item
   end
 
   resources :orders, only: [:create, :show]
@@ -17,10 +16,17 @@ Rails.application.routes.draw do
     root to: 'dashboard#show'
     resources :products, except: [:edit, :update, :show]
     resources :categories, only: [:index, :new, :create]
-
   end
 
-  # The priority is based upon order of creation: first created -> highest priority.
+  # New routes for user authentication
+  
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+  get '/signup', to: 'users#new'
+  resources :users, only: [:new, :create]
+
+  # The priority is based upon the order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"

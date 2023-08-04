@@ -37,6 +37,22 @@
         </li>
       </ul>
       <ul class="navbar-nav">
+        <!-- Add the login and sign up links here -->
+        <% if current_user %>
+          <!-- If the user is logged in, show the logout link -->
+          <li class="nav-item">
+            <%= link_to 'Logout', logout_path, method: :delete, class: 'nav-link' %>
+          </li>
+        <% else %>
+          <!-- If the user is not logged in, show the login and sign up links -->
+          <li class="nav-item">
+            <%= link_to 'Login', login_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sign Up', signup_path, class: 'nav-link' %>
+          </li>
+        <% end %>
+
         <!-- Admin dropdown -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-danger" href="#" id="navbarDropdownAdmin" role="button" data-bs-toggle="dropdown" aria-expanded="false">
